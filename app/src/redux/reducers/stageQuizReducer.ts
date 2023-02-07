@@ -1,36 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IInitialState {
-     isFirstPage: boolean;
-     isQuiz: boolean;
      amountOfQuestions: number;
+     pageNumber: number;
 }
 
 const initialState: IInitialState = {
-     isFirstPage: true,
-     isQuiz: false,
-     amountOfQuestions: 10,
+     amountOfQuestions: 5,
+     pageNumber: 1,
 };
 
 export const stageReducer = createSlice({
      name: "start",
      initialState,
      reducers: {
-          startQuiz(state) {
-               state.isFirstPage = false;
-               state.isQuiz = true;
-          },
-          finishQuiz(state) {
-               state.isQuiz = false;
-          },
-          restartQuiz(state) {
-               state.isFirstPage = true;
-          },
-          setAmountOfQuestions(state, action){
+          setAmountOfQuestions(state, action) {
                state.amountOfQuestions = action.payload;
-          }
+          },
+          changePage(state) {
+               state.pageNumber += 1;
+          },
+          setFirstPage(state) {
+               state.pageNumber = 1;
+          },
      },
 });
 
-export const { finishQuiz, startQuiz, restartQuiz } = stageReducer.actions;
+export const { setAmountOfQuestions, changePage, setFirstPage } = stageReducer.actions;
 export default stageReducer.reducer;
