@@ -21,16 +21,16 @@ export const fetchUsers =
                          : await axios.get(
                                 `https://opentdb.com/api.php?amount=${amountOfQuestions}&category=${category}&difficulty=${difficulty}`
                            );
-               // response.data.results.forEach((question: any) => {
-               //      question.correct_answer = replaceQuotes(
-               //           question.correct_answer
-               //      );
-               //      question.question = replaceQuotes(question.question);
-               //      question.incorrect_answers.forEach(
-               //           (answer: any) => (answer = replaceQuotes(answer))
-               //      );
-               // });
-               console.log("DATA RESULTS", response.data.results);
+               response.data.results.forEach((question: any) => {
+                    question.correct_answer = replaceQuotes(
+                         question.correct_answer
+                    );
+                    question.question = replaceQuotes(question.question);
+                    question.incorrect_answers.forEach(
+                         (answer: any) => (answer = replaceQuotes(answer))
+                    );
+               });
+               console.log(response.data.results);
                dispatch(setData(response.data.results));
           } catch (e: any) {
                dispatch(setIsLoading(true));

@@ -16,7 +16,7 @@ const ResultsPage = () => {
           return acc;
      }, 0);
 
-     const percentCorrectAnswers = (+correctAnswers / +totalAnswers) * 100;
+     const percentCorrectAnswers = parseFloat(((+correctAnswers / +totalAnswers) * 100).toFixed(1));
 
      const setResultColor = () => {
           let color = "";
@@ -33,15 +33,17 @@ const ResultsPage = () => {
           <>
                <div className="resultsPage">
                     <h2>RESULTS</h2>
-                    <h2
-                         style={{
-                              fontStyle: "oblique",
-                              marginTop: 20,
-                              color: setResultColor(),
-                         }}
-                    >
-                         Correct answers: {correctAnswers}/{totalAnswers} 
-                         {` (${percentCorrectAnswers}%)`}
+                    <h2>
+                         <span>Correct answers: </span>
+                         <span
+                              style={{
+                                   fontStyle: "oblique",
+                                   marginTop: 20,
+                                   color: setResultColor(),
+                              }}
+                         >
+                              {`${correctAnswers}/${totalAnswers} (${percentCorrectAnswers}%)`}{" "}
+                         </span>
                     </h2>
                     <>
                          {answersInfo.map((answer, index) => (

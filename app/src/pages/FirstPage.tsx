@@ -17,6 +17,7 @@ import { Button } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import InputNumber from "../components/firstPage/InputNumber";
 import { difficultyData } from "./data/difficultyRadioData";
+import BackDropWrap from "../components/firstPage/BackDropWrap";
 
 const FirstPage = () => {
      const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ const FirstPage = () => {
 
      return (
           <div className="firstPage">
+               {isLoading && <BackDropWrap/>}
                <RadioList
                     h2Title="Set difficulty:"
                     defaultValue={"easy"}
@@ -62,7 +64,6 @@ const FirstPage = () => {
                >
                     Start
                </Button>
-               {isLoading && <h1>Wait a minute...</h1>}
           </div>
      );
 };
