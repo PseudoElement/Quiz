@@ -1,0 +1,31 @@
+
+.firstPage{
+    height: 100%;
+    max-height: 500px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+.firstPage button{
+    align-self: center;
+}
+.firstPage .radio-group{
+    margin-bottom: 30px;
+    border: 2px solid red;
+}
+.radio-group .radio-group-title{
+    align-self: center;
+} 
+
+#select-title-label{
+    z-index: 15;
+    background: white;
+}
+.selectWrapper{
+    width: 100%;
+    max-width: 300px;
+
+}

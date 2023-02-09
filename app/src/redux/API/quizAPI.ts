@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface IParams {
+export interface ISettings {
      difficulty: string;
-     category: number;
-     amount: number;
+     category: number | string;
+     amountOfQuestions: number;
 }
 
 export interface IQuestion {
@@ -27,11 +27,11 @@ export const quizApi = createApi({
           baseUrl: "https://opentdb.com",
      }),
      endpoints: (build) => ({
-          getQuestion: build.query<IResponse, IParams>({
-               query: ({ difficulty, category, amount }) => ({
+          getQuestions: build.query<IResponse, ISettings>({
+               query: ({ difficulty, category, amountOfQuestions }) => ({
                     url: `/api.php?`,
                     params: {
-                         amount: amount,
+                         amount: amountOfQuestions,
                          category: category,
                          difficulty: difficulty,
                     },

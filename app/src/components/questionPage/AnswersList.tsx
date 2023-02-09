@@ -1,14 +1,21 @@
-import React from 'react';
+import React from "react";
+import uuid from "uuid-random";
 
-const AnswersList = ({answers}:any) => {
+interface AnswersListProps {
+     answers: Array<string>;
+     setChoosedAnswer: React.Dispatch<React.SetStateAction<string>>;
+}
 
-    console.log(answers)
-
-    return (
-        <div>
-            {answers.map((answer: any)=> <li>{answer}</li>)}
-        </div>
-    );
+const AnswersList = ({ answers, setChoosedAnswer }: AnswersListProps) => {
+     return (
+          <div>
+               {answers
+                    .sort((a: any, b: any) => (a > b ? 1 : a < b ? -1 : 0))
+                    .map((answer: any) => (
+                         <li key={uuid()}>{answer}</li>
+                    ))}
+          </div>
+     );
 };
 
 export default AnswersList;

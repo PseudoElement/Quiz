@@ -4,58 +4,81 @@ import AnswersList from "../components/questionPage/AnswersList";
 import QuestionTitle from "../components/questionPage/QuestionTitle";
 import { quizApi } from "../redux/API/quizAPI";
 import { changePage, setFirstPage } from "../redux/reducers/stageQuizReducer";
-import { useAppDispatch, useAppSelector } from "../redux/typesHook";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/typesHook";
 import uuid from "uuid-random";
+import { addAnswer } from "../redux/reducers/answersInfoReducer";
 
 const QuestionPage = () => {
-     const { amountOfQuestions, pageNumber } = useAppSelector(
-          (state) => state.stageReducer
-     );
      const dispatch = useAppDispatch();
-     const [fetchQuestion, { data, isLoading, error }]: any =
-          quizApi.useLazyGetQuestionQuery();
+
+     const { data, error, isLoading } = useAppSelector(
+          (state) => state.dataQuizReducer
+     );
+     const { pageNumber } = useAppSelector((state) => state.stageReducer);
+     const { amountOfQuestions } = useAppSelector(
+          (state) => state.settingsQuizReducer
+     );
+
+     const answersInfo = useAppSelector(
+          (state) => state.answersInfoReducer.answersInfo
+     );
+
+     const [choosedAnswer, setChoosedAnswer] = React.useState<string>("");
+
+     const goToNext = () => {
+          dispatch(changePage());
+          dispatch(
+               addAnswer({
+                    question: data[pageNumber].question,
+                    correctAnswer: data[pageNumber].correct_answer,
+                    choosedAnswer: choosedAnswer,
+                    isCorrectChoice:
+                         data[pageNumber].correct_answer === choosedAnswer,
+               })
+          );
+     };
+
+     const finishQuiz = () => {
+          dispatch(setFirstPage());
+          dispatch(
+               addAnswer({
+                    question: data[pageNumber].question,
+                    correctAnswer: data[pageNumber].correct_answer,
+                    choosedAnswer: choosedAnswer,
+                    isCorrectChoice:
+                         data[pageNumber].correct_answer === choosedAnswer,
+               })
+          );
+     };
 
      React.useEffect(() => {
-          if (data) {
-               console.log(data.results);
-          }
-     }, [data]);
-     React.useEffect(() => {
-          fetchQuestion({
-               amount: 1,
-               category: 11,
-               difficulty: "easy",
-          });
-     }, [pageNumber]);
+          console.log(answersInfo);
+     }, [answersInfo]);
      return (
           <div>
                QUESTION
-               {amountOfQuestions === pageNumber ? (
+               <h1>PAGE: {pageNumber + 1}</h1>
+               {isLoading && <h1>Wait...</h1>}
+               {error && <h1>{error}</h1>}
+               {data && (
+                    <div key={uuid()}>
+                         <QuestionTitle question={data[pageNumber].question} />
+                         <AnswersList
+                              setChoosedAnswer={setChoosedAnswer}
+                              answers={[
+                                   ...data[pageNumber].incorrect_answers,
+                                   data[pageNumber].correct_answer,
+                              ]}
+                         />
+                    </div>
+               )}
+               {+amountOfQuestions === pageNumber + 1 ? (
                     <Link to={"/results"}>
-                         <button onClick={() => dispatch(setFirstPage())}>
-                              Finish
-                         </button>
+                         <button onClick={() => finishQuiz()}>Finish</button>
                     </Link>
                ) : (
-                    <button onClick={() => dispatch(changePage())}>Next</button>
+                    <button onClick={() => goToNext()}>Next</button>
                )}
-               {isLoading && <h1>Wait...</h1>}
-               {data &&
-                    data.results.map((question: any) => {
-                         return (
-                              <div key={uuid()}>
-                                   <QuestionTitle
-                                        question={question.question}
-                                   />
-                                   <AnswersList
-                                        answers={[
-                                             ...question.incorrect_answers,
-                                             question.correct_answer,
-                                        ]}
-                                   />
-                              </div>
-                         );
-                    })}
           </div>
      );
 };
