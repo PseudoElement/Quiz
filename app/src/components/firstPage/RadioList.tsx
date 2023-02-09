@@ -6,57 +6,45 @@ import {
      FormLabel,
      Radio,
 } from "@mui/material";
-import { useAppDispatch } from "../../redux/hooks/typesHook";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/typesHook";
 import { setDifficulty } from "../../redux/reducers/settingsQuizReducer";
 
-interface IRadioDataProps {
-     label: string;
-     value: string;
-}
-
 interface IRadioListProps {
-     radioGroupName: string;
      defaultValue: string;
-     radioData: IRadioDataProps[];
+     radioData: Record<string, string>[];
+     h2Title: string;
 }
 
-const RadioList = ({
-     radioGroupName,
-     defaultValue,
-     radioData,
-}: IRadioListProps) => {
+const RadioList = ({ defaultValue, radioData, h2Title }: IRadioListProps) => {
      const dispatch = useAppDispatch();
+     const difficulty = useAppSelector(
+          (state) => state.settingsQuizReducer.difficulty
+     );
 
      return (
-          <div>
-               <h2>Set difficulty</h2>
-<FormControl className="radio-group">
-               <FormLabel
-                    className="radio-group-title"
-                    id="demo-radio-buttons-group-label"
-               >
-                    {radioGroupName}
-               </FormLabel>
-               <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue={defaultValue}
-                    name="radio-buttons-group"
-                    onChange={(e: any) =>
-                         dispatch(setDifficulty(e.target.value))
-                    }
-               >
-                    {radioData.map(({ label, value }) => (
-                         <FormControlLabel
-                              key={value}
-                              value={value}
-                              control={<Radio />}
-                              label={label}
-                         />
-                    ))}
-               </RadioGroup>
-          </FormControl>
+          <div className="optionWrapper">
+               <h2>{h2Title}</h2>
+               <FormControl className="radio-group">
+                    <RadioGroup
+                         aria-labelledby="demo-radio-buttons-group-label"
+                         defaultValue={defaultValue}
+                         name="radio-buttons-group"
+                         onChange={(e: any) =>
+                              dispatch(setDifficulty(e.target.value))
+                         }
+                    >
+                         {radioData.map(({ label, value }) => (
+                              <FormControlLabel
+                                   checked={value === difficulty}
+                                   key={value}
+                                   value={value}
+                                   control={<Radio />}
+                                   label={label}
+                              />
+                         ))}
+                    </RadioGroup>
+               </FormControl>
           </div>
-        
      );
 };
 

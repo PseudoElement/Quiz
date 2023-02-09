@@ -2,6 +2,7 @@ import { AppDispatch } from "./../store";
 import { ISettings } from "./../API/quizAPI";
 import { setError, setIsLoading, setData } from "../reducers/dataQuizReducer";
 import axios from "axios";
+import { replaceQuotes } from "../../utils/replaceQuotes";
 
 export const fetchUsers =
      ({
@@ -20,6 +21,16 @@ export const fetchUsers =
                          : await axios.get(
                                 `https://opentdb.com/api.php?amount=${amountOfQuestions}&category=${category}&difficulty=${difficulty}`
                            );
+               // response.data.results.forEach((question: any) => {
+               //      question.correct_answer = replaceQuotes(
+               //           question.correct_answer
+               //      );
+               //      question.question = replaceQuotes(question.question);
+               //      question.incorrect_answers.forEach(
+               //           (answer: any) => (answer = replaceQuotes(answer))
+               //      );
+               // });
+               console.log("DATA RESULTS", response.data.results);
                dispatch(setData(response.data.results));
           } catch (e: any) {
                dispatch(setIsLoading(true));

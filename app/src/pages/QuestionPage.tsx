@@ -1,19 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import AnswersList from "../components/questionPage/AnswersList";
 import QuestionTitle from "../components/questionPage/QuestionTitle";
-import { quizApi } from "../redux/API/quizAPI";
-import { changePage, setFirstPage } from "../redux/reducers/stageQuizReducer";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/typesHook";
+import { useAppSelector } from "../redux/hooks/typesHook";
 import uuid from "uuid-random";
-import { addAnswer } from "../redux/reducers/answersInfoReducer";
+import ButtonNext from "../components/questionPage/ButtonNext";
+import "./styles/QuestionPageStyles.css";
 
 const QuestionPage = () => {
-     const dispatch = useAppDispatch();
-
-     const { data, error, isLoading } = useAppSelector(
-          (state) => state.dataQuizReducer
-     );
+     const { data, error } = useAppSelector((state) => state.dataQuizReducer);
      const { pageNumber } = useAppSelector((state) => state.stageReducer);
      const { amountOfQuestions } = useAppSelector(
           (state) => state.settingsQuizReducer
@@ -25,45 +19,15 @@ const QuestionPage = () => {
 
      const [choosedAnswer, setChoosedAnswer] = React.useState<string>("");
 
-     const goToNext = () => {
-          dispatch(changePage());
-          dispatch(
-               addAnswer({
-                    question: data[pageNumber].question,
-                    correctAnswer: data[pageNumber].correct_answer,
-                    choosedAnswer: choosedAnswer,
-                    isCorrectChoice:
-                         data[pageNumber].correct_answer === choosedAnswer,
-               })
-          );
-     };
-
-     const finishQuiz = () => {
-          dispatch(setFirstPage());
-          dispatch(
-               addAnswer({
-                    question: data[pageNumber].question,
-                    correctAnswer: data[pageNumber].correct_answer,
-                    choosedAnswer: choosedAnswer,
-                    isCorrectChoice:
-                         data[pageNumber].correct_answer === choosedAnswer,
-               })
-          );
-     };
-
-     React.useEffect(() => {
-          console.log(answersInfo);
-     }, [answersInfo]);
      return (
-          <div>
-               QUESTION
-               <h1>PAGE: {pageNumber + 1}</h1>
-               {isLoading && <h1>Wait...</h1>}
+          <div className="questionPage">
+               <h2 className="questionPage-h2">QUESTION: {pageNumber + 1}</h2>
                {error && <h1>{error}</h1>}
                {data && (
-                    <div key={uuid()}>
+                    <div className="questionPage-question" key={uuid()}>
                          <QuestionTitle question={data[pageNumber].question} />
                          <AnswersList
+                              choosedAnswer={choosedAnswer}
                               setChoosedAnswer={setChoosedAnswer}
                               answers={[
                                    ...data[pageNumber].incorrect_answers,
@@ -72,13 +36,21 @@ const QuestionPage = () => {
                          />
                     </div>
                )}
-               {+amountOfQuestions === pageNumber + 1 ? (
-                    <Link to={"/results"}>
-                         <button onClick={() => finishQuiz()}>Finish</button>
-                    </Link>
-               ) : (
-                    <button onClick={() => goToNext()}>Next</button>
-               )}
+
+               <ButtonNext
+                    answerData={{
+                         question: data[pageNumber].question,
+                         correctAnswer: data[pageNumber].correct_answer,
+                         choosedAnswer: choosedAnswer,
+                         isCorrectChoice:
+                              data[pageNumber].correct_answer === choosedAnswer,
+                    }}
+                    type={
+                         +amountOfQuestions === pageNumber + 1
+                              ? "finish"
+                              : "next"
+                    }
+               />
           </div>
      );
 };

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IAnswerInfo{
+export interface IAnswerInfo{
     question: string;
     correctAnswer: string;
     choosedAnswer: string;

@@ -19,9 +19,10 @@ const InputNumber = ({ label, h2Title, type }: InputNumberProps) => {
           dispatch(setAmountOfQuestions(value));
      };
      return (
-          <div>
+          <div className="optionWrapper">
                <h2>{h2Title}</h2>
                <TextField
+               className="inputWrapper"
                     inputProps={{ min: 5, max: 50 }}
                     FormHelperTextProps={{
                          style: { color: isCorrectValue ? "gray" : "red" },

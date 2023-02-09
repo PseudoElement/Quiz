@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+
+.resultsPage{
+    background-color: white;
+    height: 100%;
+    /* max-height: 700px; */
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    border-radius: 20px;
+    padding: 20px;
+    /* overflow: auto; */
+}
+
+.resultsPage >h2{
+    align-self: center;
+}
+
+.answerResult{
+    margin: 20px 0;
+}
+.answerResult h2{
+    margin-bottom: 15px;
+}
+
+.choosedAnswer, .correctAnswer{
+    font-size: 20px;
+}
+
+.restartBtn{
+    align-self: center;
+}

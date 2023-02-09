@@ -1,27 +1,60 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { quizApi } from "../redux/API/quizAPI";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/typesHook";
-import { clearAnswersInfo } from "../redux/reducers/answersInfoReducer";
+import AnswerResult from "../components/resultsPage/AnswerResult";
+import ButtonRestart from "../components/resultsPage/ButtonRestart";
+import { useAppSelector } from "../redux/hooks/typesHook";
+import "./styles/ResultPageStyles.css";
 
 const ResultsPage = () => {
      const answersInfo = useAppSelector(
           (state) => state.answersInfoReducer.answersInfo
      );
 
-     const dispatch = useAppDispatch();
+     const totalAnswers = answersInfo.length;
 
-     React.useEffect(() => {
-          console.log(answersInfo)
-     }, [answersInfo]);
+     const correctAnswers = answersInfo.reduce((acc, el) => {
+          el.isCorrectChoice && ++acc;
+          return acc;
+     }, 0);
+
+     const percentCorrectAnswers = (+correctAnswers / +totalAnswers) * 100;
+
+     const setResultColor = () => {
+          let color = "";
+          color =
+               percentCorrectAnswers > 75
+                    ? "green"
+                    : percentCorrectAnswers > 40
+                    ? "goldenrod"
+                    : "crimson";
+          return color;
+     };
 
      return (
-          <div>
-               RESULTS
-               <Link onClick={()=> dispatch(clearAnswersInfo())} to={"/"}>
-                    <button>Restart</button>
-               </Link>
-          </div>
+          <>
+               <div className="resultsPage">
+                    <h2>RESULTS</h2>
+                    <h2
+                         style={{
+                              fontStyle: "oblique",
+                              marginTop: 20,
+                              color: setResultColor(),
+                         }}
+                    >
+                         Correct answers: {correctAnswers}/{totalAnswers} 
+                         {` (${percentCorrectAnswers}%)`}
+                    </h2>
+                    <>
+                         {answersInfo.map((answer, index) => (
+                              <AnswerResult
+                                   key={index}
+                                   answer={answer}
+                                   index={index}
+                              />
+                         ))}
+                    </>
+                    <ButtonRestart />
+               </div>
+          </>
      );
 };
 

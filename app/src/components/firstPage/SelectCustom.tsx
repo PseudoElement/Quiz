@@ -13,9 +13,9 @@ const SelectCustom = ({ selectsData, selectTitle, h2Title }: ISelectCustomProps)
      const dispatch = useAppDispatch();
 
      return (
-          <div>
+          <div className="optionWrapper">
                <h2>{h2Title}</h2>
-               <FormControl className="selectWrapper">
+               <FormControl className="inputWrapper">
                     <InputLabel id="select-title-label">
                          {selectTitle}
                     </InputLabel>

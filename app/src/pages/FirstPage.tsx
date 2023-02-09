@@ -16,13 +16,14 @@ import { fetchUsers } from "../redux/hooks/fetchQuestions";
 import { Button } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import InputNumber from "../components/firstPage/InputNumber";
+import { difficultyData } from "./data/difficultyRadioData";
 
 const FirstPage = () => {
      const dispatch = useAppDispatch();
      const { category, difficulty, amountOfQuestions } = useAppSelector(
           (state) => state.settingsQuizReducer
      );
-     const { data } = useAppSelector((state) => state.dataQuizReducer);
+     const { isLoading } = useAppSelector((state) => state.dataQuizReducer);
      const navigate = useNavigate();
 
      const start = async () => {
@@ -33,21 +34,15 @@ const FirstPage = () => {
                     amountOfQuestions,
                })
           );
-          setTimeout(() => {
-               navigate("/quiz", { replace: true });
-          }, 1000);
+          navigate("/quiz", { replace: true });
      };
 
      return (
           <div className="firstPage">
                <RadioList
-                    radioGroupName={"Difficulty"}
+                    h2Title="Set difficulty:"
                     defaultValue={"easy"}
-                    radioData={[
-                         { value: "easy", label: "Easy" },
-                         { value: "medium", label: "Medium" },
-                         { value: "hard", label: "Hard" },
-                    ]}
+                    radioData={difficultyData}
                />
                <SelectCustom
                     h2Title="Choose category:"
@@ -67,6 +62,7 @@ const FirstPage = () => {
                >
                     Start
                </Button>
+               {isLoading && <h1>Wait a minute...</h1>}
           </div>
      );
 };

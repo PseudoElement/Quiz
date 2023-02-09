@@ -1,20 +1,46 @@
 
 .firstPage{
+    background-color: white;
     height: 100%;
-    max-height: 500px;
+    max-height: 700px;
     width: 100%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-around;
+    border-radius: 20px;
+    padding: 20px;
 }
+
+.firstPage .optionWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.firstPage .optionWrapper:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+.firstPage h2{
+    margin-bottom: 15px;
+    align-self: flex-start;
+}
+
+
+
 .firstPage button{
     align-self: center;
 }
 .firstPage .radio-group{
     margin-bottom: 30px;
-    border: 2px solid red;
 }
 .radio-group .radio-group-title{
     align-self: center;
@@ -24,8 +50,7 @@
     z-index: 15;
     background: white;
 }
-.selectWrapper{
+.inputWrapper{
     width: 100%;
-    max-width: 300px;
 
 }
