@@ -1,5 +1,5 @@
 import React from "react";
-import { IAnswerInfo } from "../../redux/reducers/answersInfoReducer";
+import { IAnswerInfo } from "../../../BLL/redux/reducers/answersInfoReducer";
 
 const AnswerResult = ({
      answer,

@@ -1,19 +1,21 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { useAppDispatch } from "../../redux/hooks/typesHook";
+import { useAppDispatch } from "../../../BLL/redux/hooks/typesHook";
 import { useNavigate } from "react-router";
-import { clearAnswersInfo } from "../../redux/reducers/answersInfoReducer";
+import { clearAnswersInfo } from "../../../BLL/redux/reducers/answersInfoReducer";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import { clearSettings } from "../../redux/reducers/settingsQuizReducer";
+import { clearSettings } from "../../../BLL/redux/reducers/settingsQuizReducer";
 
 const ButtonRestart = () => {
      const navigate = useNavigate();
      const dispatch = useAppDispatch();
 
      const restart = () => {
-          dispatch(clearAnswersInfo());
-          dispatch(clearSettings())
-          navigate("/");
+          setTimeout(()=>{
+               dispatch(clearAnswersInfo());
+               dispatch(clearSettings())
+               navigate("/");
+          }, 500)
      };
 
      return (

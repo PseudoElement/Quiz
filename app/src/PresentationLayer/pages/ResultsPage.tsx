@@ -1,7 +1,7 @@
 import React from "react";
+import { useAppSelector } from "../../BLL/redux/hooks/typesHook";
 import AnswerResult from "../components/resultsPage/AnswerResult";
 import ButtonRestart from "../components/resultsPage/ButtonRestart";
-import { useAppSelector } from "../redux/hooks/typesHook";
 import "./styles/ResultPageStyles.css";
 
 const ResultsPage = () => {

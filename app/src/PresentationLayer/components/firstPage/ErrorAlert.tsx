@@ -1,7 +1,6 @@
 import { Alert, AlertTitle } from "@mui/material";
 import React from "react";
-import { useAppSelector } from "../../redux/hooks/typesHook";
-
+import { useAppSelector } from "../../../BLL/redux/hooks/typesHook";
 const ErrorAlert = () => {
 
     const error = useAppSelector(state=> state.dataQuizReducer.error)

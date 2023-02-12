@@ -1,12 +1,9 @@
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/typesHook";
-import {
-     setCategory,
-     setMaxQuestionsCount,
-} from "../../redux/reducers/settingsQuizReducer";
+import { useAppDispatch, useAppSelector } from "../../../BLL/redux/hooks/typesHook";
+import { setCategory, setMaxQuestionsCount } from "../../../BLL/redux/reducers/settingsQuizReducer";
 import uuid from "uuid-random";
-import { Category } from "../../redux/reducers/categoriesReducer";
+import { Category } from "../../../BLL/redux/reducers/categoriesReducer";
 
 interface ISelectCustomProps {
      selectsData: Array<Category>;

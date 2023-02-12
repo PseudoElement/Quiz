@@ -1,7 +1,7 @@
 import React from "react";
 import AnswersList from "../components/questionPage/AnswersList";
 import QuestionTitle from "../components/questionPage/QuestionTitle";
-import { useAppSelector } from "../redux/hooks/typesHook";
+import { useAppSelector } from "../../BLL/redux/hooks/typesHook";
 import uuid from "uuid-random";
 import ButtonNext from "../components/questionPage/ButtonNext";
 import "./styles/QuestionPageStyles.css";

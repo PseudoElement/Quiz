@@ -1,8 +1,8 @@
 import { AppDispatch } from "./../store";
-import { ISettings } from "./../API/quizAPI";
+import { ISettings } from "../interfaces/interfaces";
 import { setError, setIsLoading, setData } from "../reducers/dataQuizReducer";
 import axios from "axios";
-import { decodeText } from "../../utils/decodeText";
+import { decodeText } from "../../../PresentationLayer/utils/decodeText";
 
 export const fetchQuestions =
      ({

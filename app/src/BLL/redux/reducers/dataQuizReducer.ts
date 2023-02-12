@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IQuestion } from "../API/quizAPI";
+import { IQuestion } from "../interfaces/interfaces";
 
 interface IDataInitialState {
      data: IQuestion[];

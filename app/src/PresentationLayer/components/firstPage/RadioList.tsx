@@ -6,8 +6,8 @@ import {
      FormLabel,
      Radio,
 } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/typesHook";
-import { setDifficulty } from "../../redux/reducers/settingsQuizReducer";
+import { useAppDispatch, useAppSelector } from "../../../BLL/redux/hooks/typesHook";
+import { setDifficulty } from "../../../BLL/redux/reducers/settingsQuizReducer";
 
 interface IRadioListProps {
      defaultValue: string;

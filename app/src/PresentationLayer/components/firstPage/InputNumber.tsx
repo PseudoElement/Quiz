@@ -1,10 +1,10 @@
 import React from "react";
 import { TextField } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/typesHook";
+import { useAppSelector, useAppDispatch } from "../../../BLL/redux/hooks/typesHook";
 import {
      setAmountOfQuestions,
      setIsValidCount,
-} from "../../redux/reducers/settingsQuizReducer";
+} from "../../../BLL/redux/reducers/settingsQuizReducer";
 
 type InputNumberProps = Record<string, string>;
 

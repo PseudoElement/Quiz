@@ -1,13 +1,13 @@
 import React from "react";
-import { useAppDispatch } from "../../redux/hooks/typesHook";
+import { useAppDispatch } from "../../../BLL/redux/hooks/typesHook";
 import {
      changePage,
      setFirstPage,
-} from "../../redux/reducers/stageQuizReducer";
+} from "../../../BLL/redux/reducers/stageQuizReducer";
 import {
      addAnswer,
      IAnswerInfo,
-} from "../../redux/reducers/answersInfoReducer";
+} from "../../../BLL/redux/reducers/answersInfoReducer";
 import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';

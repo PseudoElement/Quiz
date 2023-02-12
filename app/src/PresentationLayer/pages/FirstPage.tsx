@@ -2,17 +2,17 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import RadioList from "../components/firstPage/RadioList";
 import SelectCustom from "../components/firstPage/SelectCustom";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/typesHook";
+import { useAppSelector, useAppDispatch } from "../../BLL/redux/hooks/typesHook";
 import "./styles/FirstPageStyles.css";
-import { fetchQuestions } from "../redux/hooks/fetchQuestions";
+import { fetchQuestions } from "../../BLL/redux/hooks/fetchQuestions";
 import { Button } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import InputNumber from "../components/firstPage/InputNumber";
 import { difficultyData } from "./data/difficultyRadioData";
 import BackDropWrap from "../components/firstPage/BackDropWrap";
-import { setCategories } from "../redux/hooks/setCategories";
-import { fetchCategoryIdArr } from "../redux/hooks/fetchCategoryIdArr";
-import { setError } from "../redux/reducers/dataQuizReducer";
+import { setCategories } from "../../BLL/redux/hooks/setCategories";
+import { fetchCategoryIdArr } from "../../BLL/redux/hooks/fetchCategoryIdArr";
+import { setError } from "../../BLL/redux/reducers/dataQuizReducer";
 import ErrorAlert from "../components/firstPage/ErrorAlert";
 
 const FirstPage = () => {
