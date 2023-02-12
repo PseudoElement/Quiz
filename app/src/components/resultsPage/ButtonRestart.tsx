@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../redux/hooks/typesHook";
 import { useNavigate } from "react-router";
 import { clearAnswersInfo } from "../../redux/reducers/answersInfoReducer";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { clearSettings } from "../../redux/reducers/settingsQuizReducer";
 
 const ButtonRestart = () => {
      const navigate = useNavigate();
@@ -11,6 +12,7 @@ const ButtonRestart = () => {
 
      const restart = () => {
           dispatch(clearAnswersInfo());
+          dispatch(clearSettings())
           navigate("/");
      };
 

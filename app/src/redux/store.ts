@@ -5,15 +5,16 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import stageReducer from "./reducers/stageQuizReducer";
 import dataQuizReducer from "./reducers/dataQuizReducer";
 import answersInfoReducer from "./reducers/answersInfoReducer";
-
+import categoriesReducer from "./reducers/categoriesReducer";
 
 export const store = configureStore({
      reducer: {
           [quizApi.reducerPath]: quizApi.reducer,
           stageReducer,
-          settingsQuizReducer,
           dataQuizReducer,
-          answersInfoReducer
+          answersInfoReducer,
+          categoriesReducer,
+          settingsQuizReducer
      },
      middleware: (getDefaultMiddleware) =>
           getDefaultMiddleware().concat(quizApi.middleware),

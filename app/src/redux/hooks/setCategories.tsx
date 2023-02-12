@@ -1,0 +1,19 @@
+import { addMaxQuestionCount, Category } from "../reducers/categoriesReducer";
+import {
+     fetchMockQuestionCount,
+     QuestionCountResponse,
+} from "./fetchMockQuestionCount";
+import { AppDispatch } from "../store";
+
+export const setCategories = () =>  async(dispatch: AppDispatch, getState:any) => {
+     const categoriesData = getState().categoriesReducer.categoriesData
+     const response: QuestionCountResponse = await fetchMockQuestionCount();
+     await categoriesData.forEach((category: Category) =>
+          dispatch(
+               addMaxQuestionCount(
+                    response.find((el) => el.category_id === category.id)
+               )
+          )
+     );
+};
+

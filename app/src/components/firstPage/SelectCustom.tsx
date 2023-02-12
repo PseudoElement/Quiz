@@ -1,16 +1,68 @@
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import { useAppDispatch } from "../../redux/hooks/typesHook";
-import { setCategory } from "../../redux/reducers/settingsQuizReducer";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/typesHook";
+import {
+     setCategory,
+     setMaxQuestionsCount,
+} from "../../redux/reducers/settingsQuizReducer";
+import uuid from "uuid-random";
+import { Category } from "../../redux/reducers/categoriesReducer";
 
 interface ISelectCustomProps {
-     selectsData: Array<Record<string, string | number>>;
+     selectsData: Array<Category>;
      selectTitle: string;
      h2Title: string;
 }
 
-const SelectCustom = ({ selectsData, selectTitle, h2Title }: ISelectCustomProps) => {
+const SelectCustom = ({
+     selectsData,
+     selectTitle,
+     h2Title,
+}: ISelectCustomProps) => {
      const dispatch = useAppDispatch();
+
+     const { difficulty, category } = useAppSelector(
+          (state) => state.settingsQuizReducer
+     );
+     const categoriesData = useAppSelector(
+          (state) => state.categoriesReducer.categoriesData
+     );
+
+     const selectHandler = (value: any) => {
+          if (value || value === 0) {
+               dispatch(setCategory(value));
+          }
+     };
+
+     React.useEffect(() => {
+          dispatch(
+               setMaxQuestionsCount(
+                    (function () {
+                         let value: number | undefined;
+                         const foundCategory = categoriesData.find(
+                              (el) => el.id === category
+                         );
+                         switch (difficulty) {
+                              case "easy":
+                                   value =
+                                        foundCategory?.category_question_count
+                                             ?.total_easy_question_count;
+                                   return value;
+                              case "medium":
+                                   value =
+                                        foundCategory?.category_question_count
+                                             ?.total_medium_question_count;
+                                   return value;
+                              case "hard":
+                                   value =
+                                        foundCategory?.category_question_count
+                                             ?.total_hard_question_count;
+                                   return value;
+                         }
+                    })() || 50
+               )
+          );
+     }, [difficulty, category]);
 
      return (
           <div className="optionWrapper">
@@ -20,15 +72,15 @@ const SelectCustom = ({ selectsData, selectTitle, h2Title }: ISelectCustomProps)
                          {selectTitle}
                     </InputLabel>
                     <Select
-                         defaultValue={0}
+                         defaultValue={selectsData?.length ? `0` : ""}
                          labelId="select-title-label"
                          id="demo-simple-select"
                          label="Age"
-                         onChange={(e) => dispatch(setCategory(e.target.value))}
+                         onChange={(e) => selectHandler(e.target.value)}
                     >
-                         {selectsData.map(({ text, value }) => (
-                              <MenuItem key={value} value={value}>
-                                   {text}
+                         {selectsData?.map(({ id, name }: any) => (
+                              <MenuItem key={uuid()} value={id}>
+                                   {name}
                               </MenuItem>
                          ))}
                     </Select>

@@ -35,7 +35,7 @@ const AnswersList = ({
                          {sortedAnswers.map((answer) => (
                               <FormControlLabel
                                    checked={answer === choosedAnswer}
-                                   key={answer}
+                                   key={uuid()}
                                    value={answer}
                                    control={<Radio />}
                                    label={answer}

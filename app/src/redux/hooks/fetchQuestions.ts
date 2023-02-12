@@ -2,11 +2,11 @@ import { AppDispatch } from "./../store";
 import { ISettings } from "./../API/quizAPI";
 import { setError, setIsLoading, setData } from "../reducers/dataQuizReducer";
 import axios from "axios";
-import { replaceQuotes } from "../../utils/replaceQuotes";
+import { decodeText } from "../../utils/decodeText";
 
-export const fetchUsers =
+export const fetchQuestions =
      ({
-          amountOfQuestions = 10,
+          amountOfQuestions = 5,
           category = 0,
           difficulty = "easy",
      }: ISettings) =>
@@ -14,7 +14,7 @@ export const fetchUsers =
           try {
                dispatch(setIsLoading(true));
                const response =
-                    category === 0
+                    category === "0"
                          ? await axios.get(
                                 `https://opentdb.com/api.php?amount=${amountOfQuestions}&difficulty=${difficulty}`
                            )
@@ -22,15 +22,14 @@ export const fetchUsers =
                                 `https://opentdb.com/api.php?amount=${amountOfQuestions}&category=${category}&difficulty=${difficulty}`
                            );
                response.data.results.forEach((question: any) => {
-                    question.correct_answer = replaceQuotes(
+                    question.correct_answer = decodeText(
                          question.correct_answer
                     );
-                    question.question = replaceQuotes(question.question);
+                    question.question = decodeText(question.question);
                     question.incorrect_answers.forEach(
-                         (answer: any) => (answer = replaceQuotes(answer))
+                         (answer: any) => (answer = decodeText(answer))
                     );
                });
-               console.log(response.data.results);
                dispatch(setData(response.data.results));
           } catch (e: any) {
                dispatch(setIsLoading(true));

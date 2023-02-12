@@ -22,7 +22,7 @@ const RadioList = ({ defaultValue, radioData, h2Title }: IRadioListProps) => {
      );
 
      return (
-          <div className="optionWrapper">
+          <div className="optionWrapper first">
                <h2>{h2Title}</h2>
                <FormControl className="radio-group">
                     <RadioGroup

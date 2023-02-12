@@ -17,17 +17,11 @@
 .firstPage .optionWrapper{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
-    max-width: 300px;
-}
-
-.firstPage .optionWrapper:nth-child(1){
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start; 
+    max-width: 350px;
+    margin-bottom: 20px;
 }
 
 .firstPage h2{

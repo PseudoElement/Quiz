@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface ISettings {
      difficulty: string;
-     category: number | string;
-     amountOfQuestions: number;
+     category:  string | number;
+     amountOfQuestions: string | number;
 }
 
 export interface IQuestion {

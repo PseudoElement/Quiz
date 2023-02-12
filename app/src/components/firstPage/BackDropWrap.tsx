@@ -1,9 +1,6 @@
 import React from "react";
 import { Backdrop, CircularProgress } from "@mui/material";
 
-// interface BackDropWrapProps {
-//      isLoading: boolean;
-// }
 
 const BackDropWrap = () => {
      return (

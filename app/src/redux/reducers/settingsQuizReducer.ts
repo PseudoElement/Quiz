@@ -1,11 +1,20 @@
-import { ISettings } from './../API/quizAPI';
+import { store } from "./../store";
 import { createSlice } from "@reduxjs/toolkit";
 
+interface IInitialState {
+     difficulty: string;
+     category: string | number;
+     amountOfQuestions: string | number;
+     maxQuestionsCount: number | undefined;
+     isValidCount: boolean;
+}
 
-const initialState: ISettings = {
+const initialState: IInitialState = {
      difficulty: "easy",
-     amountOfQuestions: 10,
+     amountOfQuestions: 0,
      category: 0,
+     maxQuestionsCount: 50,
+     isValidCount: false,
 };
 
 const settingsQuizReducer = createSlice({
@@ -21,9 +30,26 @@ const settingsQuizReducer = createSlice({
           setCategory(state, action) {
                state.category = action.payload;
           },
+          setMaxQuestionsCount(state, action) {
+               state.maxQuestionsCount = action.payload;
+          },
+          setIsValidCount(state, action) {
+               state.isValidCount = action.payload;
+          },
+          clearSettings(state){
+               state.isValidCount = false;
+               state.amountOfQuestions = 0;
+               state.category = 0;
+          }
      },
 });
 
-export const { setAmountOfQuestions, setDifficulty, setCategory } =
-     settingsQuizReducer.actions;
+export const {
+     setAmountOfQuestions,
+     setDifficulty,
+     setCategory,
+     setMaxQuestionsCount,
+     setIsValidCount,
+     clearSettings
+} = settingsQuizReducer.actions;
 export default settingsQuizReducer.reducer;

@@ -1,6 +1,5 @@
 import React from "react";
 import { IAnswerInfo } from "../../redux/reducers/answersInfoReducer";
-import { replaceQuotes } from "../../utils/replaceQuotes";
 
 const AnswerResult = ({
      answer,
