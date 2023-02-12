@@ -49,3 +49,6 @@
     width: 100%;
 
 }
+.MuiList-root{
+    max-height: 400px;
+}

@@ -1,7 +1,13 @@
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../../BLL/redux/hooks/typesHook";
-import { setCategory, setMaxQuestionsCount } from "../../../BLL/redux/reducers/settingsQuizReducer";
+import {
+     useAppDispatch,
+     useAppSelector,
+} from "../../../BLL/redux/hooks/typesHook";
+import {
+     setCategory,
+     setMaxQuestionsCount,
+} from "../../../BLL/redux/reducers/settingsQuizReducer";
 import uuid from "uuid-random";
 import { Category } from "../../../BLL/redux/reducers/categoriesReducer";
 
@@ -69,6 +75,7 @@ const SelectCustom = ({
                          {selectTitle}
                     </InputLabel>
                     <Select
+                         className="selectsWrapper"
                          defaultValue={selectsData?.length ? `0` : ""}
                          labelId="select-title-label"
                          id="demo-simple-select"
