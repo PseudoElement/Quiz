@@ -11,10 +11,9 @@ export const store = configureStore({
           dataQuizReducer,
           answersInfoReducer,
           categoriesReducer,
-          settingsQuizReducer
-     }
+          settingsQuizReducer,
+     },
 });
-
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

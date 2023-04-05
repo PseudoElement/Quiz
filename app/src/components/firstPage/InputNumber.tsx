@@ -1,19 +1,14 @@
 import React from "react";
 import { TextField } from "@mui/material";
-import { useAppSelector, useAppDispatch } from "../../../BLL/redux/hooks/typesHook";
-import {
-     setAmountOfQuestions,
-     setIsValidCount,
-} from "../../../BLL/redux/reducers/settingsQuizReducer";
+import { useAppDispatch, useAppSelector } from "../../shared/hooks/typesHook";
+import { setAmountOfQuestions, setIsValidCount } from "../../store/reducers/settingsQuizReducer";
 
 type InputNumberProps = Record<string, string>;
 
 const InputNumber = ({ label, h2Title, type }: InputNumberProps) => {
      const dispatch = useAppDispatch();
 
-     const { maxQuestionsCount, isValidCount } = useAppSelector(
-          (state) => state.settingsQuizReducer
-     );
+     const { maxQuestionsCount, isValidCount } = useAppSelector((state) => state.settingsQuizReducer);
 
      const [isFirstRender, setIsFirstRender] = React.useState(true);
 
@@ -33,11 +28,9 @@ const InputNumber = ({ label, h2Title, type }: InputNumberProps) => {
                     className="inputWrapper"
                     inputProps={{ min: 5, max: maxQuestionsCount }}
                     FormHelperTextProps={{
-                         style: { color: (isValidCount || isFirstRender) ? "gray" : "red" },
+                         style: { color: isValidCount || isFirstRender ? "gray" : "red" },
                     }}
-                    helperText={`Min: 5, max: ${
-                         maxQuestionsCount! > 50 ? 50 : maxQuestionsCount
-                    }`}
+                    helperText={`Min: 5, max: ${maxQuestionsCount! > 50 ? 50 : maxQuestionsCount}`}
                     onInput={(e: any) => validateNumber(e.target.value)}
                     id="outlined-basic"
                     label={label}

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IQuestion } from "../interfaces/interfaces";
+import { IQuestion } from "../../shared/interfaces/interfaces";
 
 interface IDataInitialState {
      data: IQuestion[];

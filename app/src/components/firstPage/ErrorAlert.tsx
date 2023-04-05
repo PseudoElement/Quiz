@@ -1,12 +1,11 @@
 import { Alert, AlertTitle } from "@mui/material";
 import React from "react";
-import { useAppSelector } from "../../../BLL/redux/hooks/typesHook";
+import { useAppSelector } from "../../shared/hooks/typesHook";
 const ErrorAlert = () => {
-
-    const error = useAppSelector(state=> state.dataQuizReducer.error)
+     const error = useAppSelector((state) => state.dataQuizReducer.error);
 
      return (
-          <Alert style={{marginBottom:20}} severity="error">
+          <Alert style={{ marginBottom: 20 }} severity="error">
                <AlertTitle>Error</AlertTitle>
                {error} — <strong>check it out!</strong>
           </Alert>

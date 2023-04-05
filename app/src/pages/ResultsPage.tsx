@@ -1,13 +1,11 @@
 import React from "react";
-import { useAppSelector } from "../../BLL/redux/hooks/typesHook";
 import AnswerResult from "../components/resultsPage/AnswerResult";
 import ButtonRestart from "../components/resultsPage/ButtonRestart";
 import "./styles/ResultPageStyles.css";
+import { useAppSelector } from "../shared/hooks/typesHook";
 
 const ResultsPage = () => {
-     const answersInfo = useAppSelector(
-          (state) => state.answersInfoReducer.answersInfo
-     );
+     const answersInfo = useAppSelector((state) => state.answersInfoReducer.answersInfo);
 
      const totalAnswers = answersInfo.length;
 
@@ -20,12 +18,7 @@ const ResultsPage = () => {
 
      const setResultColor = () => {
           let color = "";
-          color =
-               percentCorrectAnswers > 75
-                    ? "green"
-                    : percentCorrectAnswers > 40
-                    ? "goldenrod"
-                    : "crimson";
+          color = percentCorrectAnswers > 75 ? "green" : percentCorrectAnswers > 40 ? "goldenrod" : "crimson";
           return color;
      };
 
@@ -47,11 +40,7 @@ const ResultsPage = () => {
                     </h2>
                     <>
                          {answersInfo.map((answer, index) => (
-                              <AnswerResult
-                                   key={index}
-                                   answer={answer}
-                                   index={index}
-                              />
+                              <AnswerResult key={index} answer={answer} index={index} />
                          ))}
                     </>
                     <ButtonRestart />

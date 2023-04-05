@@ -1,17 +1,12 @@
 import React from "react";
-import { useAppDispatch } from "../../../BLL/redux/hooks/typesHook";
-import {
-     changePage,
-     setFirstPage,
-} from "../../../BLL/redux/reducers/stageQuizReducer";
-import {
-     addAnswer,
-     IAnswerInfo,
-} from "../../../BLL/redux/reducers/answersInfoReducer";
+
 import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import FinishIcon from "./FinishIcon";
+import { IAnswerInfo, addAnswer } from "../../store/reducers/answersInfoReducer";
+import { useAppDispatch } from "../../shared/hooks/typesHook";
+import { changePage, setFirstPage } from "../../store/reducers/stageQuizReducer";
 
 interface ButtonNextProps {
      answerData: IAnswerInfo;
@@ -36,7 +31,7 @@ const ButtonNext = ({ type, answerData }: ButtonNextProps) => {
           <Button
                onClick={() => (type === "next" ? goToNext() : finishQuiz())}
                variant="contained"
-               endIcon={type === "next" ? <ArrowForwardIosIcon/> : <FinishIcon/>}
+               endIcon={type === "next" ? <ArrowForwardIosIcon /> : <FinishIcon />}
           >
                {type === "next" ? "Next" : "Show results"}
           </Button>

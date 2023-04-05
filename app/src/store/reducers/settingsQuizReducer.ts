@@ -1,4 +1,4 @@
-import { store } from "./../store";
+import { store } from "../store";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IInitialState {
@@ -36,11 +36,11 @@ const settingsQuizReducer = createSlice({
           setIsValidCount(state, action) {
                state.isValidCount = action.payload;
           },
-          clearSettings(state){
+          clearSettings(state) {
                state.isValidCount = false;
                state.amountOfQuestions = 0;
                state.category = 0;
-          }
+          },
      },
 });
 
@@ -50,6 +50,6 @@ export const {
      setCategory,
      setMaxQuestionsCount,
      setIsValidCount,
-     clearSettings
+     clearSettings,
 } = settingsQuizReducer.actions;
 export default settingsQuizReducer.reducer;
