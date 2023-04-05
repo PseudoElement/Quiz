@@ -1,54 +1,50 @@
-
-.firstPage{
-    background-color: white;
-    height: 100%;
-    max-height: 700px;
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 10px 1px gray;
+.firstPage {
+     background-color: white;
+     height: 100%;
+     max-height: 700px;
+     width: 100%;
+     max-width: 600px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-around;
+     border-radius: 20px;
+     padding: 20px;
+     box-shadow: 0 0 10px 1px gray;
 }
 
-.firstPage .optionWrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    width: 100%;
-    max-width: 350px;
-    margin-bottom: 20px;
+.firstPage .optionWrapper {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: center;
+     width: 100%;
+     max-width: 350px;
+     margin-bottom: 20px;
 }
 
-.firstPage h2{
-    margin-bottom: 15px;
-    align-self: flex-start;
+.firstPage h2 {
+     margin-bottom: 15px;
+     align-self: flex-start;
 }
 
-
-
-.firstPage button{
-    align-self: center;
+.firstPage button {
+     align-self: center;
 }
-.firstPage .radio-group{
-    margin-bottom: 30px;
+.firstPage .radio-group {
+     margin-bottom: 30px;
 }
-.radio-group .radio-group-title{
-    align-self: center;
-} 
+.radio-group .radio-group-title {
+     align-self: center;
+}
 
-#select-title-label{
-    z-index: 15;
-    background: white;
+#select-title-label {
+     z-index: 15;
+     background: white;
 }
-.inputWrapper{
-    width: 100%;
-
+.inputWrapper {
+     width: 100%;
 }
-.MuiList-root{
-    max-height: 400px;
+.MuiList-root {
+     max-height: 400px;
 }

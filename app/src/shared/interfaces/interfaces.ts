@@ -1,6 +1,6 @@
 export interface ISettings {
      difficulty: string;
-     category:  string | number;
+     category: string | number;
      amountOfQuestions: string | number;
 }
 
@@ -18,4 +18,3 @@ export interface IResponse {
      response_code: number;
      results: IQuestion[];
 }
-

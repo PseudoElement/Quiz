@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface IAnswerInfo{
-    question: string;
-    correctAnswer: string;
-    choosedAnswer: string;
-    isCorrectChoice: boolean;
+export interface IAnswerInfo {
+     question: string;
+     correctAnswer: string;
+     choosedAnswer: string;
+     isCorrectChoice: boolean;
 }
 
-const initialState: {answersInfo: IAnswerInfo[]} = {
+const initialState: { answersInfo: IAnswerInfo[] } = {
      answersInfo: [],
 };
 

@@ -1,4 +1,3 @@
-import { store } from "../store";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IInitialState {
@@ -44,12 +43,5 @@ const settingsQuizReducer = createSlice({
      },
 });
 
-export const {
-     setAmountOfQuestions,
-     setDifficulty,
-     setCategory,
-     setMaxQuestionsCount,
-     setIsValidCount,
-     clearSettings,
-} = settingsQuizReducer.actions;
+export const { setAmountOfQuestions, setDifficulty, setCategory, setMaxQuestionsCount, setIsValidCount, clearSettings } = settingsQuizReducer.actions;
 export default settingsQuizReducer.reducer;

@@ -1,26 +1,25 @@
 import { AppDispatch } from "../../store/store";
 import { setError, setIsLoading, setData } from "../../store/reducers/dataQuizReducer";
-import axios from "axios";
-import { decodeText } from "../utils/decodeText";
-import { ISettings } from "../interfaces/interfaces";
+import { decodeQuestionObject, decodeText } from "../utils/decodeText";
+import { IQuestion, ISettings } from "../interfaces/interfaces";
+import { api, endpoints } from "../api";
+import { AxiosResponse } from "axios";
 
 export const fetchQuestions =
      ({ amountOfQuestions = 5, category = 0, difficulty = "easy" }: ISettings) =>
      async (dispatch: AppDispatch) => {
           try {
                dispatch(setIsLoading(true));
-               const response =
-                    category === "0"
-                         ? await axios.get(
-                                `https://opentdb.com/api.php?amount=${amountOfQuestions}&difficulty=${difficulty}`
-                           )
-                         : await axios.get(
-                                `https://opentdb.com/api.php?amount=${amountOfQuestions}&category=${category}&difficulty=${difficulty}`
-                           );
-               response.data.results.forEach((question: any) => {
-                    question.correct_answer = decodeText(question.correct_answer);
-                    question.question = decodeText(question.question);
-                    question.incorrect_answers.forEach((answer: any) => (answer = decodeText(answer)));
+               const response: AxiosResponse = await api.get(endpoints.getQuestions, {
+                    params: {
+                         amount: amountOfQuestions,
+                         difficulty: difficulty,
+                         category: category || null,
+                    },
+               });
+               const data: IQuestion[] = response.data.results;
+               data.forEach((question) => {
+                    decodeQuestionObject(question);
                });
                dispatch(setData(response.data.results));
           } catch (e: any) {

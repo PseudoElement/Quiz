@@ -1,41 +1,42 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+     padding: 0;
+     margin: 0;
 }
-a{
-    text-decoration: none;
-}
-
-.resultsPage{
-    background-color: white;
-    height: 100%;
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 10px 1px gray;
+a {
+     text-decoration: none;
 }
 
-.resultsPage >h2{
-    align-self: center;
-    margin-bottom: 20px;
+.resultsPage {
+     background-color: white;
+     height: 100%;
+     width: 100%;
+     max-width: 600px;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: space-around;
+     border-radius: 20px;
+     padding: 20px;
+     box-shadow: 0 0 10px 1px gray;
 }
 
-.answerResult{
-    margin-bottom: 20px;
-}
-.answerResult h2{
-    margin-bottom: 15px;
+.resultsPage > h2 {
+     align-self: center;
+     margin-bottom: 20px;
 }
 
-.choosedAnswer, .correctAnswer{
-    font-size: 20px;
+.answerResult {
+     margin-bottom: 20px;
+}
+.answerResult h2 {
+     margin-bottom: 15px;
 }
 
-.restartBtn{
-    align-self: center;
+.choosedAnswer,
+.correctAnswer {
+     font-size: 20px;
+}
+
+.restartBtn {
+     align-self: center;
 }

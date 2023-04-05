@@ -18,9 +18,7 @@ import { setCategories } from "../shared/hooks/setCategories";
 
 const FirstPage = () => {
      const dispatch = useAppDispatch();
-     const { category, difficulty, amountOfQuestions, isValidCount } = useAppSelector(
-          (state) => state.settingsQuizReducer
-     );
+     const { category, difficulty, amountOfQuestions, isValidCount } = useAppSelector((state) => state.settingsQuizReducer);
      const { isLoading, error } = useAppSelector((state) => state.dataQuizReducer);
      const categoriesData = useAppSelector((state) => state.categoriesReducer.categoriesData);
 
@@ -61,12 +59,7 @@ const FirstPage = () => {
                <SelectCustom h2Title="Choose category:" selectTitle="Category" selectsData={categoriesData} />
                <InputNumber label="Amount" h2Title="Choose amount of questions:" type="number" />
                {error && <ErrorAlert />}
-               <Button
-                    size="large"
-                    variant="contained"
-                    onClick={() => start()}
-                    endIcon={<PlayCircleOutlineIcon fontSize="large" />}
-               >
+               <Button size="large" variant="contained" onClick={() => start()} endIcon={<PlayCircleOutlineIcon fontSize="large" />}>
                     Start
                </Button>
           </div>

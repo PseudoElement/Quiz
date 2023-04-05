@@ -1,9 +1,4 @@
-import {
-     FormControl,
-     FormControlLabel,
-     Radio,
-     RadioGroup,
-} from "@mui/material";
+import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import React from "react";
 import uuid from "uuid-random";
 
@@ -13,15 +8,8 @@ interface AnswersListProps {
      setChoosedAnswer: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AnswersList = ({
-     answers,
-     setChoosedAnswer,
-     choosedAnswer,
-}: AnswersListProps) => {
-     
-     const sortedAnswers = answers.sort((a: any, b: any) =>
-          a > b ? 1 : a < b ? -1 : 0
-     );
+const AnswersList = ({ answers, setChoosedAnswer, choosedAnswer }: AnswersListProps) => {
+     const sortedAnswers = answers.sort((a: any, b: any) => (a > b ? 1 : a < b ? -1 : 0));
 
      return (
           <div>
@@ -33,13 +21,7 @@ const AnswersList = ({
                          onChange={(e: any) => setChoosedAnswer(e.target.value)}
                     >
                          {sortedAnswers.map((answer) => (
-                              <FormControlLabel
-                                   checked={answer === choosedAnswer}
-                                   key={uuid()}
-                                   value={answer}
-                                   control={<Radio />}
-                                   label={answer}
-                              />
+                              <FormControlLabel checked={answer === choosedAnswer} key={uuid()} value={answer} control={<Radio />} label={answer} />
                          ))}
                     </RadioGroup>
                </FormControl>

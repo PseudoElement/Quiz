@@ -11,7 +11,6 @@ export interface Category {
      };
 }
 
-
 interface ICategories {
      categoriesData: Array<Category>;
 }
@@ -31,8 +30,7 @@ const categoriesReducer = createSlice({
                     category.id === action.payload.category_id
                          ? {
                                 ...category,
-                                category_question_count:
-                                     action.payload.category_question_count,
+                                category_question_count: action.payload.category_question_count,
                            }
                          : { ...category }
                );

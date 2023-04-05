@@ -24,13 +24,7 @@ const RadioList = ({ defaultValue, radioData, h2Title }: IRadioListProps) => {
                          onChange={(e: any) => dispatch(setDifficulty(e.target.value))}
                     >
                          {radioData.map(({ label, value }) => (
-                              <FormControlLabel
-                                   checked={value === difficulty}
-                                   key={value}
-                                   value={value}
-                                   control={<Radio />}
-                                   label={label}
-                              />
+                              <FormControlLabel checked={value === difficulty} key={value} value={value} control={<Radio />} label={label} />
                          ))}
                     </RadioGroup>
                </FormControl>

@@ -12,7 +12,6 @@ const stageReducer = createSlice({
      name: "start",
      initialState,
      reducers: {
-
           changePage(state) {
                state.pageNumber += 1;
           },
@@ -22,5 +21,5 @@ const stageReducer = createSlice({
      },
 });
 
-export const {  changePage, setFirstPage } = stageReducer.actions;
+export const { changePage, setFirstPage } = stageReducer.actions;
 export default stageReducer.reducer;
