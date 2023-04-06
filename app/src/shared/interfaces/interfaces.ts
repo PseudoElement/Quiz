@@ -18,3 +18,7 @@ export interface IResponse {
      response_code: number;
      results: IQuestion[];
 }
+export interface ICategoryID {
+     name: string;
+     id: number;
+}

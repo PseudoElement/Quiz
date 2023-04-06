@@ -1,6 +1,6 @@
 import { AppDispatch } from "../../store/store";
 import { setError, setIsLoading, setData } from "../../store/reducers/dataQuizReducer";
-import { decodeQuestionObject, decodeText } from "../utils/decodeText";
+import { decodeQuestionObject } from "../utils/decodeText";
 import { IQuestion, ISettings } from "../interfaces/interfaces";
 import { api, endpoints } from "../api";
 import { AxiosResponse } from "axios";

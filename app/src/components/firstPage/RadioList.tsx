@@ -1,5 +1,5 @@
 import React from "react";
-import { RadioGroup, FormControlLabel, FormControl, FormLabel, Radio } from "@mui/material";
+import { RadioGroup, FormControlLabel, FormControl, Radio } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/typesHook";
 import { setDifficulty } from "../../store/reducers/settingsQuizReducer";
 

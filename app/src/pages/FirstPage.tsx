@@ -13,16 +13,15 @@ import ErrorAlert from "../components/firstPage/ErrorAlert";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/typesHook";
 import { setError } from "../store/reducers/dataQuizReducer";
 import { fetchQuestions } from "../shared/hooks/fetchQuestions";
-import { fetchCategoryIdArr } from "../shared/hooks/fetchCategoryIdArr";
-import { setCategories } from "../shared/hooks/setCategories";
+import { useCategories } from "../shared/hooks/useCategories";
+import Layout from "../components/layout/Layout";
 
 const FirstPage = () => {
      const dispatch = useAppDispatch();
      const { category, difficulty, amountOfQuestions, isValidCount } = useAppSelector((state) => state.settingsQuizReducer);
      const { isLoading, error } = useAppSelector((state) => state.dataQuizReducer);
-     const categoriesData = useAppSelector((state) => state.categoriesReducer.categoriesData);
 
-     const [isFetchedCategoryId, setIsFetchCategoryId] = React.useState(false);
+     const {} = useCategories();
 
      const navigate = useNavigate();
 
@@ -42,27 +41,19 @@ const FirstPage = () => {
           navigate("/quiz", { replace: true });
      };
 
-     React.useMemo(async () => {
-          await dispatch(fetchCategoryIdArr());
-          setIsFetchCategoryId(true);
-     }, []);
-
-     React.useEffect(() => {
-          if (!isFetchedCategoryId) return;
-          dispatch(setCategories());
-     }, [isFetchedCategoryId]);
-
      return (
-          <div className="firstPage">
-               {isLoading && <BackDropWrap />}
-               <RadioList h2Title="Set difficulty:" defaultValue={"easy"} radioData={difficultyData} />
-               <SelectCustom h2Title="Choose category:" selectTitle="Category" selectsData={categoriesData} />
-               <InputNumber label="Amount" h2Title="Choose amount of questions:" type="number" />
-               {error && <ErrorAlert />}
-               <Button size="large" variant="contained" onClick={() => start()} endIcon={<PlayCircleOutlineIcon fontSize="large" />}>
-                    Start
-               </Button>
-          </div>
+          <Layout>
+               <div className="firstPage">
+                    {isLoading && <BackDropWrap />}
+                    <RadioList h2Title="Set difficulty:" defaultValue={"easy"} radioData={difficultyData} />
+                    <SelectCustom h2Title="Choose category:" selectTitle="Category" />
+                    <InputNumber label="Amount" h2Title="Choose amount of questions:" type="number" />
+                    {error && <ErrorAlert />}
+                    <Button size="large" variant="contained" onClick={() => start()} endIcon={<PlayCircleOutlineIcon fontSize="large" />}>
+                         Start
+                    </Button>
+               </div>
+          </Layout>
      );
 };
 

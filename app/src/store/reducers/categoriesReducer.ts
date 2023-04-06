@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface Category {
-     id: number | string;
-     name: string;
+     category_id: number | string;
      category_question_count?: {
           total_question_count: number;
           total_easy_question_count: number;
@@ -25,18 +24,8 @@ const categoriesReducer = createSlice({
           setCategoriesData(state, action) {
                state.categoriesData = action.payload;
           },
-          addMaxQuestionCount(state, action) {
-               state.categoriesData = state.categoriesData.map((category) =>
-                    category.id === action.payload.category_id
-                         ? {
-                                ...category,
-                                category_question_count: action.payload.category_question_count,
-                           }
-                         : { ...category }
-               );
-          },
      },
 });
 
-export const { setCategoriesData, addMaxQuestionCount } = categoriesReducer.actions;
+export const { setCategoriesData } = categoriesReducer.actions;
 export default categoriesReducer.reducer;

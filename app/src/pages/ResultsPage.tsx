@@ -3,6 +3,7 @@ import AnswerResult from "../components/resultsPage/AnswerResult";
 import ButtonRestart from "../components/resultsPage/ButtonRestart";
 import "./styles/ResultPageStyles.css";
 import { useAppSelector } from "../shared/hooks/typesHook";
+import Layout from "../components/layout/Layout";
 
 const ResultsPage = () => {
      const answersInfo = useAppSelector((state) => state.answersInfoReducer.answersInfo);
@@ -23,7 +24,7 @@ const ResultsPage = () => {
      };
 
      return (
-          <>
+          <Layout>
                <div className="resultsPage">
                     <h2>RESULTS</h2>
                     <h2>
@@ -45,7 +46,7 @@ const ResultsPage = () => {
                     </>
                     <ButtonRestart />
                </div>
-          </>
+          </Layout>
      );
 };
 

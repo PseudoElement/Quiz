@@ -1,34 +1,38 @@
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import uuid from "uuid-random";
-import { Category } from "../../store/reducers/categoriesReducer";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/typesHook";
 import { setCategory, setMaxQuestionsCount } from "../../store/reducers/settingsQuizReducer";
+import { useCategories } from "../../shared/hooks/useCategories";
 
 interface ISelectCustomProps {
-     selectsData: Array<Category>;
      selectTitle: string;
      h2Title: string;
 }
 
-const SelectCustom = ({ selectsData, selectTitle, h2Title }: ISelectCustomProps) => {
+const SelectCustom = ({ selectTitle, h2Title }: ISelectCustomProps) => {
      const dispatch = useAppDispatch();
+     const { categoriesNameID } = useCategories();
+     const theme = useAppSelector((state) => state.themeReducer.theme);
 
      const { difficulty, category } = useAppSelector((state) => state.settingsQuizReducer);
      const categoriesData = useAppSelector((state) => state.categoriesReducer.categoriesData);
 
-     const selectHandler = (value: any) => {
+     const selectHandler = (value: number) => {
           if (value || value === 0) {
                dispatch(setCategory(value));
           }
      };
 
      React.useEffect(() => {
+          console.log("THEMEEEE", theme);
+     }, [theme]);
+     React.useEffect(() => {
           dispatch(
                setMaxQuestionsCount(
                     (function () {
                          let value: number | undefined;
-                         const foundCategory = categoriesData.find((el) => el.id === category);
+                         const foundCategory = categoriesData.find((el) => el.category_id === category);
                          switch (difficulty) {
                               case "easy":
                                    value = foundCategory?.category_question_count?.total_easy_question_count;
@@ -51,14 +55,13 @@ const SelectCustom = ({ selectsData, selectTitle, h2Title }: ISelectCustomProps)
                <FormControl className="inputWrapper">
                     <InputLabel id="select-title-label">{selectTitle}</InputLabel>
                     <Select
-                         className="selectsWrapper"
-                         defaultValue={selectsData?.length ? `0` : ""}
+                         defaultValue={categoriesNameID?.length ? `0` : ""}
                          labelId="select-title-label"
                          id="demo-simple-select"
                          label="Age"
-                         onChange={(e) => selectHandler(e.target.value)}
+                         onChange={(e) => selectHandler(+e.target.value)}
                     >
-                         {selectsData?.map(({ id, name }: any) => (
+                         {categoriesNameID?.map(({ id, name }: any) => (
                               <MenuItem key={uuid()} value={id}>
                                    {name}
                               </MenuItem>
