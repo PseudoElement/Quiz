@@ -13,7 +13,6 @@ interface ISelectCustomProps {
 const SelectCustom = ({ selectTitle, h2Title }: ISelectCustomProps) => {
      const dispatch = useAppDispatch();
      const { categoriesNameID } = useCategories();
-     const theme = useAppSelector((state) => state.themeReducer.theme);
 
      const { difficulty, category } = useAppSelector((state) => state.settingsQuizReducer);
      const categoriesData = useAppSelector((state) => state.categoriesReducer.categoriesData);

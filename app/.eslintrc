@@ -9,7 +9,7 @@
           "ecmaVersion": 2020
      },
      "rules": {
-          "no-console": "warn",
+          "no-console": "error",
           "no-eval": "error",
           "import/first": "error",
           "prettier/prettier": [

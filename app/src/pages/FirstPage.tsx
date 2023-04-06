@@ -13,15 +13,12 @@ import ErrorAlert from "../components/firstPage/ErrorAlert";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/typesHook";
 import { setError } from "../store/reducers/dataQuizReducer";
 import { fetchQuestions } from "../shared/hooks/fetchQuestions";
-import { useCategories } from "../shared/hooks/useCategories";
 import Layout from "../components/layout/Layout";
 
 const FirstPage = () => {
      const dispatch = useAppDispatch();
      const { category, difficulty, amountOfQuestions, isValidCount } = useAppSelector((state) => state.settingsQuizReducer);
      const { isLoading, error } = useAppSelector((state) => state.dataQuizReducer);
-
-     const {} = useCategories();
 
      const navigate = useNavigate();
 

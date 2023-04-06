@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./style.module.css";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks/typesHook";
 import { changeTheme, setTheme } from "../../store/reducers/themeReducer";
-import { useCookies } from "react-cookie";
+import { getCookie, setCookie } from "../../shared/utils/cookies";
 
 interface ILayout {
      children: React.ReactNode | React.ReactNode[];
@@ -11,14 +11,13 @@ interface ILayout {
 const Layout = ({ children }: ILayout) => {
      const dispatch = useAppDispatch();
      const theme = useAppSelector((state) => state.themeReducer.theme);
-     const [cookies, setCookie] = useCookies(["theme"]);
 
      React.useEffect(() => {
-          cookies.theme && dispatch(setTheme(cookies.theme));
+          getCookie("theme") && dispatch(setTheme(getCookie("theme")));
      }, []);
 
      React.useEffect(() => {
-          setCookie("theme", theme, { expires: new Date(Date.now() + 6.048e8) });
+          setCookie("theme", theme);
      }, [theme]);
 
      const onClick = () => {
