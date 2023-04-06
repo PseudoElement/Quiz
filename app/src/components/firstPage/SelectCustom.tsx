@@ -25,9 +25,6 @@ const SelectCustom = ({ selectTitle, h2Title }: ISelectCustomProps) => {
      };
 
      React.useEffect(() => {
-          console.log("THEMEEEE", theme);
-     }, [theme]);
-     React.useEffect(() => {
           dispatch(
                setMaxQuestionsCount(
                     (function () {
